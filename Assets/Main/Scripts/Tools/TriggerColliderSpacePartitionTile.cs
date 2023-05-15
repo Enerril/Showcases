@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class CustomGridTile : MonoBehaviour
+public class TriggerColliderSpacePartitionTile : MonoBehaviour
 {
 
-    public int gridID;
+    public int gridTileID;
     public int gridUsersSPPositionerCounter;
     public int gridUsersSPCurrentAmount;
 
@@ -34,10 +34,13 @@ public class CustomGridTile : MonoBehaviour
 
     public void AddUnitToTheGridArray(GameObject go)
     {
-        
 
+        //Debug.Log(go);
         gridUserSP = go.GetComponent<IGridUserSP>();
-        gridUserSP.CurrentTileID = gridID;
+        //gridUserSP = go.GetComponent(typeof(IGridUserSP)) as IGridUserSP;
+        //Debug.Log(gridUserSP);
+        //GetComponent(typeof(IEnemy)) as IEnemy;
+        gridUserSP.EnteredTile(this);
         gridUsersSP[gridUsersSPPositionerCounter] = gridUserSP;
         gridUnitIDs[gridUsersSPPositionerCounter] = gridUserSP.ID;
 
@@ -47,7 +50,7 @@ public class CustomGridTile : MonoBehaviour
 
     public void RemoveUnitFromTheGridArray(GameObject go)
     {
-        var a = go.GetComponent<IGridUserSP>();
+        var a = gridUserSP = go.GetComponent<IGridUserSP>();
 
         for (int i = 0; i < gridUsersSP.Length; i++)
         {

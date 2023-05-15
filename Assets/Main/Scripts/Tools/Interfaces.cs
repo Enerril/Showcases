@@ -10,5 +10,6 @@ public interface IGridUserSP:IUniqID
 {
     // Space Partitioning Grid User
     int CurrentTileID { get; set; }
-    void EnteredTile();
+    void EnteredTile(TriggerColliderSpacePartitionTile tile);
+    //void ChangeTileID(int TileID);
 }

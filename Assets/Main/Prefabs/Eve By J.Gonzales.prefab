@@ -60,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &926698718849115793
 Transform:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ Transform:
   - {fileID: 2180572549844532479}
   - {fileID: 8537378753373301675}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3988765632895618128
 MonoBehaviour:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFighting: 0
-  _myTeamNumber: 0
+  _myTeamNumber: 1
   enemiesFrom_SP_GridTiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -326,6 +326,9 @@ Animation:
   m_Animations:
   - {fileID: -203655887218126122, guid: ac0cfa2aab2d3c94d9e76aed0630b7c9, type: 3}
   - {fileID: -203655887218126122, guid: 38aff5ced92811841886dd10b1b4a93c, type: 3}
+  - {fileID: -203655887218126122, guid: fd3d3b2409bad35429c245ef75a09686, type: 3}
+  - {fileID: -203655887218126122, guid: da3213753dde1c748abb0521540200fd, type: 3}
+  - {fileID: -203655887218126122, guid: 68aaf9aef705656469aba14b7baa3306, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

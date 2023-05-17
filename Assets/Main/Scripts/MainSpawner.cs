@@ -9,8 +9,10 @@ public class MainSpawner : MonoBehaviour
     AstarPath astar;
     AstarData astar_Data;
     [SerializeField]GameObject prefab1;
+    [SerializeField] GameObject prefab2;
     GridGraph grid;
     [SerializeField] int spawmAmount=20;
+    [SerializeField] bool isActive;
 
     // Start is called before the first frame update
     void Start()
@@ -19,16 +21,20 @@ public class MainSpawner : MonoBehaviour
        // astar = GameObject.FindWithTag("Pather").GetComponent<AstarPath>();
         //astar_Data=astar.GetComponent<AstarData>();
 
-        grid = AstarPath.active.data.gridGraph;
-        Vector3 pos=new Vector3();
-        
-
-        for (int i = 0; i < spawmAmount; i++)
+        if (isActive)
         {
+            grid = AstarPath.active.data.gridGraph;
+            Vector3 pos = new Vector3();
 
-            pos = GetRandomOkNode();
-            Instantiate(prefab1, pos, Quaternion.identity);
+
+            for (int i = 0; i < spawmAmount; i++)
+            {
+
+                pos = GetRandomOkNode();
+                Instantiate(prefab1, pos, Quaternion.identity);
+            }
         }
+       
 
 
     }

@@ -12,6 +12,9 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     // test values for nodeCanvas to test out behaviorTrees
     // 4 states. 1 - idle, eval enemies. 2 - run, if near. 3 - fight, until target dead or die. 4 - dead.
     [SerializeField] GameObject[] enemiesFrom_SP_GridTiles = new GameObject[10];  //for now can't have more than 10. why? CAUSE.
+
+    //[SerializeField] GameObject[] AllUnitsFromTiles=new GameObject[10]; 
+
     byte enemiesCounterSP;    // for iterating enemiesFrom_SP_GridTiles
 
     [SerializeField] bool _isIdle;
@@ -53,6 +56,7 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
         // we search nearby territory using Space Partitioning... in the next version ??
 
         var nearbyEnemies = TriggerColliderSpacePartitionTile.GetAllNeighborUnits(CurrentTileID);
+        //AllUnitsFromTiles = TriggerColliderSpacePartitionTile.GetAllNeighborUnits(CurrentTileID);
 
         for (int i = 0; i < nearbyEnemies.Length; i++)
         {
@@ -60,7 +64,7 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 
             if (nearbyEnemies[i].GetComponent<NC_Stater>().MyTeamNumber != MyTeamNumber)
             {
-                enemiesFrom_SP_GridTiles[i] = nearbyEnemies[i];
+                enemiesFrom_SP_GridTiles[enemiesCounterSP] = nearbyEnemies[i];
                 enemiesCounterSP++;
             }
            

@@ -10,7 +10,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
     public int gridUsersSPCurrentAmount;
     [SerializeField] public Vector3 tileCoord;
     IGridUserSP[] gridUsersSP=new IGridUserSP[100];
-    public GameObject[] gridUnits = new GameObject[100];
+    [SerializeField] GameObject[] gridUnits = new GameObject[100];
 
     //public GameObject[] gridUsersSP = new GameObject[100];
     public int[] gridUnitIDs = new int[100];
@@ -39,13 +39,14 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
 
         //Debug.Log(go);
         gridUserSP = go.GetComponent<IGridUserSP>();
+        
         //gridUserSP = go.GetComponent(typeof(IGridUserSP)) as IGridUserSP;
         //Debug.Log(gridUserSP);
         //GetComponent(typeof(IEnemy)) as IEnemy;
         gridUserSP.EnteredTile(this);
         gridUsersSP[gridUsersSPPositionerCounter] = gridUserSP;
         gridUnitIDs[gridUsersSPPositionerCounter] = gridUserSP.ID;
-
+        gridUnits[gridUsersSPPositionerCounter] = gridUserSP.myGameObject;
         //Debug.Log($"'{unitClass.UnidID}' Gameobject entered Grid tile '{gridID}'");
         IncreaseCounter();
     }
@@ -60,6 +61,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
             {
                 gridUsersSP[i] = null;
                 gridUnitIDs[i] = 0;
+                gridUnits[i] = null;
                 gridUsersSPCurrentAmount--;
                 //Debug.Log($"'{unitClass.UnidID}' Gameobject removed Grid tile  '{gridID}' list");
                 break;
@@ -78,6 +80,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
         gridUsersSPCurrentAmount++;
         if (gridUsersSPPositionerCounter >= gridUsersSP.Length)
         {
+            Debug.Log(this.gridTileID + " tile reseted counters");
             var k = gridUsersSP.Length;
             //gridUsersSP = new GameObject[k];
             Array.Clear(gridUsersSP,0,gridUsersSP.Length);

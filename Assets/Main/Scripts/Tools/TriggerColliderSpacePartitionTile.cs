@@ -95,4 +95,9 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
         boxCollider.enabled = true;
     }
 
+    public IGridUserSP[] UnitsInTile()
+    {
+        return gridUsersSP;
+    }
+
 }

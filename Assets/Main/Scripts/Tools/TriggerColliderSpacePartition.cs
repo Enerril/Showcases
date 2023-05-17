@@ -52,6 +52,11 @@ public class TriggerColliderSpacePartition : MonoBehaviour
        // Debug.Log(boxCollider.bounds.size);
     }
 
+    public static void NearbyGameobjectSearch()
+    {
+
+    }
+
    
 
 }

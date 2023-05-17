@@ -4,10 +4,11 @@ using UnityEngine;
 
 public interface IUniqID
 {
-     int ID { get; set; }
+     int ID { get;}
 }
 public interface IGridUserSP:IUniqID
 {
+    GameObject myGameObject{get;}
     // Space Partitioning Grid User
     int CurrentTileID { get; set; }
     void EnteredTile(TriggerColliderSpacePartitionTile tile);

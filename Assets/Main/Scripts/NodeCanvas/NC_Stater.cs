@@ -6,9 +6,13 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 {
     [SerializeField] bool _isFighting;
     public GameObject myGameObject  => this.gameObject;
+    
+    [SerializeField] byte _myTeamNumber;
+    //[SerializeField] byte someByte;
     // test values for nodeCanvas to test out behaviorTrees
     // 4 states. 1 - idle, eval enemies. 2 - run, if near. 3 - fight, until target dead or die. 4 - dead.
-    [SerializeField] public int MyTeamNumber;
+    [SerializeField] GameObject[] enemiesFrom_SP_GridTiles = new GameObject[10];  //for now can't have more than 10. why? CAUSE.
+    byte enemiesCounterSP;    // for iterating enemiesFrom_SP_GridTiles
 
     [SerializeField] bool _isIdle;
     [SerializeField] bool _isPaused;
@@ -26,8 +30,9 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     public bool isRunning { get => _isRunning; set => _isRunning = value; }
     public bool isStopped { get => _isStopped; set => _isStopped = value; }
     public GameObject Target { get => _target; set => _target = value; }
+    public byte MyTeamNumber { get => _myTeamNumber; set => _myTeamNumber = value; }
 
-
+    Vector3 tempVector;
     public void EnteredTile(TriggerColliderSpacePartitionTile tile)
     {
         CurrentTileID=tile.gridTileID;
@@ -46,7 +51,42 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     public bool SearchForEnemies()
     {
         // we search nearby territory using Space Partitioning... in the next version ??
-        return true;
+
+        var nearbyEnemies = TriggerColliderSpacePartitionTile.GetAllNeighborUnits(CurrentTileID);
+
+        for (int i = 0; i < nearbyEnemies.Length; i++)
+        {
+            if(enemiesCounterSP>=9)break;
+
+            if (nearbyEnemies[i].GetComponent<NC_Stater>().MyTeamNumber != MyTeamNumber)
+            {
+                enemiesFrom_SP_GridTiles[i] = nearbyEnemies[i];
+                enemiesCounterSP++;
+            }
+           
+        }
+        float temp = 50000;
+        for (int i = 0; i < enemiesFrom_SP_GridTiles.Length; i++)
+        {
+            if (enemiesFrom_SP_GridTiles[i].gameObject != null)
+            {
+                tempVector = enemiesFrom_SP_GridTiles[i].gameObject.transform.position - transform.position;
+                float sqrLen = tempVector.sqrMagnitude;
+
+                if (sqrLen < temp * temp)
+                {
+                    temp = sqrLen;
+                    _target = enemiesFrom_SP_GridTiles[i].gameObject;
+
+                }
+            }
+           
+        }
+
+        if(_target!=null) return true; else return false;
+
+
+       // return false;
     }
 
 

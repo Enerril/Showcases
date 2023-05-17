@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
   m_Name: Soldier Chase BT
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"dynamic":true,"_position":{"x":5714.67,"y":5005.979},"$type":"NodeCanvas.BehaviourTrees.Selector","$id":"0"},{"dynamic":true,"_position":{"x":5400.0,"y":5175.0},"_comment":"Dynamic
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"dynamic":true,"_position":{"x":5714.67,"y":5005.979},"$type":"NodeCanvas.BehaviourTrees.Selector","$id":"0"},{"dynamic":true,"_position":{"x":5399.0,"y":5174.0},"_comment":"Dynamic
     for the Can See target condition","$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"1"},{"_condition":{"target":{"_name":"Target","_targetVariableID":"1c1a3c83-ccd6-49e1-bfb1-30924289768a"},"maxDistance":{"_value":50.0},"layerMask":{"_value":{"value":55}},"awarnessDistance":{"_value":5.0},"viewAngle":{"_value":70.0},"$type":"NodeCanvas.Tasks.Conditions.CanSeeTarget"},"_position":{"x":5280.0,"y":5280.0},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"2"},{"_position":{"x":5520.0,"y":5295.0},"_comment":"Select
     Move or Aim","$type":"NodeCanvas.BehaviourTrees.Selector","$id":"3"},{"dynamic":true,"_position":{"x":5310.0,"y":5415.0},"_comment":"Dynamic
     for the distance check","$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"4"},{"_condition":{"checkTarget":{"_name":"Target","_targetVariableID":"1c1a3c83-ccd6-49e1-bfb1-30924289768a"},"distance":{"_value":5.0},"_invert":true,"$type":"NodeCanvas.Tasks.Conditions.CheckDistanceToGameObject"},"_position":{"x":5125.0,"y":5531.0},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"5"},{"policy":1,"_position":{"x":5353.0,"y":5534.0},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"6"},{"_action":{"log":{"_value":"Come
@@ -36,6 +36,6 @@ MonoBehaviour:
     _comments: Makes the agent move to target up to distance and aim only if the
       agent is able to see the target and the target is in fron of him in the first
       place. Else, it patrols the way points provided in the list variable.
-    _translation: {x: -3484, y: -3387}
-    _zoomFactor: 0.68845266
+    _translation: {x: -5009, y: -5036}
+    _zoomFactor: 1
   _haltSerialization: 0

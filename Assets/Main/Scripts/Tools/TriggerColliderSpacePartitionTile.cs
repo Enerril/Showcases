@@ -11,6 +11,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
     [SerializeField] public Vector3 tileCoord;
     IGridUserSP[] gridUsersSP=new IGridUserSP[100];
     public GameObject[] gridUnits = new GameObject[100];
+
     //public GameObject[] gridUsersSP = new GameObject[100];
     public int[] gridUnitIDs = new int[100];
     BoxCollider boxCollider;
@@ -210,7 +211,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
         // another "super efficient" function. gotta redesign this
         var originGridTile = TriggerColliderSpacePartition.ReturnTileByID(tileID);
 
-        TriggerColliderSpacePartitionTile[] relevantTiles = TriggerColliderSpacePartitionTile.GetNeighbors(originGridTile);
+        TriggerColliderSpacePartitionTile[] relevantTiles = GetNeighbors(originGridTile);
         int tileUnitCounter = 0;
         int currentAddPos = 0;
 

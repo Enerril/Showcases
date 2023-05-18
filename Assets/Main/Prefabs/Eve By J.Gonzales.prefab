@@ -76,7 +76,7 @@ Transform:
   - {fileID: 2180572549844532479}
   - {fileID: 8537378753373301675}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3988765632895618128
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 0
-  maxSpeed: 8
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -170,9 +170,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
+  slowdownDistance: 20
   pickNextWaypointDist: 2
-  endReachedDistance: 2
+  endReachedDistance: 10
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -258,8 +258,9 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"isRunning":{"_propertyPath":"NC_Stater.isRunning","_name":"isRunning","_id":"dd38936f-f503-40f1-98e7-1cdf657a0440","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"isPaused":{"_propertyPath":"NC_Stater.isPaused","_name":"isPaused","_id":"bc91f2ff-20a6-48ee-a8fe-5d1ff4305dae","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"isStopped":{"_propertyPath":"NC_Stater.isStopped","_name":"isStopped","_id":"d2901cff-70a9-4b19-bd8b-cbf9c78c8f3b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Target":{"_propertyPath":"NC_Stater.Target","_name":"Target","_id":"35633123-357e-47fd-b1cf-47de278bc49f","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Target":{"_propertyPath":"NC_Stater.Target","_name":"Target","_id":"fc5571be-e7d1-450e-ade2-1715f310018a","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"isFighting":{"_propertyPath":"NC_Stater.isFighting","_name":"isFighting","_id":"bfd34c6c-9f16-4973-884d-778c1d1b57bb","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"idleFloatWait":{"_name":"idleFloatWait","_id":"05715f43-1aaa-4126-973d-44cab4d96dd3","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -275,10 +276,13 @@ MonoBehaviour:
   - _json: '{"_propertyPath":"NC_Stater.isStopped","_name":"isStopped","_id":"d2901cff-70a9-4b19-bd8b-cbf9c78c8f3b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
-  - _json: '{"_propertyPath":"NC_Stater.Target","_name":"Target","_id":"35633123-357e-47fd-b1cf-47de278bc49f","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+  - _json: '{"_propertyPath":"NC_Stater.Target","_name":"Target","_id":"fc5571be-e7d1-450e-ade2-1715f310018a","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references: []
   - _json: '{"_propertyPath":"NC_Stater.isFighting","_name":"isFighting","_id":"bfd34c6c-9f16-4973-884d-778c1d1b57bb","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_name":"idleFloatWait","_id":"05715f43-1aaa-4126-973d-44cab4d96dd3","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &5430080505459280434
@@ -294,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFighting: 0
+  splineObj: {fileID: 0}
   _myTeamNumber: 1
   enemiesFrom_SP_GridTiles:
   - {fileID: 0}
@@ -310,7 +315,7 @@ MonoBehaviour:
   _isPaused: 0
   _isRunning: 0
   _isStopped: 0
-  _target: {fileID: 0}
+  _target: {fileID: 4609872567351686939, guid: ab81b5114384ee148a986de575f0cf36, type: 3}
   _agentID: 0
   _currentTileID: 0
 --- !u!111 &7605187394039347317

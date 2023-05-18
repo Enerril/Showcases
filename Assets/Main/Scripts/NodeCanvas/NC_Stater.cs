@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class NC_Stater : MonoBehaviour, IGridUserSP
 {
     [SerializeField] bool _isFighting;
     public GameObject myGameObject  => this.gameObject;
-    
+    [SerializeField] GameObject splineObj;
     [SerializeField] byte _myTeamNumber;
     //[SerializeField] byte someByte;
     // test values for nodeCanvas to test out behaviorTrees
@@ -16,6 +17,9 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     //[SerializeField] GameObject[] AllUnitsFromTiles=new GameObject[10]; 
 
     byte enemiesCounterSP;    // for iterating enemiesFrom_SP_GridTiles
+
+    IAstarAI aiPathf;
+
 
     [SerializeField] bool _isIdle;
     [SerializeField] bool _isPaused;
@@ -45,6 +49,9 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     private void Awake()
     {
         _agentID = StaticCounters.GetNewAgentID();
+        aiPathf = GetComponent<IAstarAI>();
+
+
     }
     private void Start()
     {
@@ -80,7 +87,11 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
                 if (sqrLen < temp * temp)
                 {
                     temp = sqrLen;
-                    _target = enemiesFrom_SP_GridTiles[i].gameObject;
+                    Target = enemiesFrom_SP_GridTiles[i].gameObject;
+                    // we have target, exit idle go into running state (for now, distance check later)
+                    isIdle = false;
+                    isRunning = true;
+
 
                 }
             }
@@ -89,8 +100,24 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 
         if(_target!=null) return true; else return false;
 
-
        // return false;
+    }
+
+    public void RunningToTheTarget()
+    {
+        aiPathf.canMove = true;
+        aiPathf.destination = Target.transform.position;
+
+        if (aiPathf.reachedDestination == true)
+        {
+
+            isRunning = false;
+            isFighting = true;
+            aiPathf.canMove = false;
+
+        }
+
+
     }
 
 

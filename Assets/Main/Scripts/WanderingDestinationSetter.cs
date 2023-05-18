@@ -27,7 +27,7 @@ public class WanderingDestinationSetter : MonoBehaviour
         point += ai.position;
         return point;
     }
-
+    /*
     void Update()
     {
         // Update the destination of the AI if
@@ -38,6 +38,6 @@ public class WanderingDestinationSetter : MonoBehaviour
             ai.destination = PickRandomPoint();
             ai.SearchPath();
         }
-    }
+    }*/
 }
 

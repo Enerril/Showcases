@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1777571974454007669}
   - component: {fileID: 9219457058267776423}
   - component: {fileID: 5818477267906101095}
-  - component: {fileID: 3520668639390767817}
+  - component: {fileID: 3212438593773423014}
   m_Layer: 10
   m_Name: FireBall
   m_TagString: Untagged
@@ -104,6 +104,8 @@ MonoBehaviour:
   releasePowerMult: 5
   randomAimMult: 5
   explosion: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  TeamNumber: 0
+  released: 0
 --- !u!54 &1777571974454007669
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateMethod: 1
   _spline: {fileID: 0}
-  _autoUpdate: 1
+  _autoUpdate: 0
   _rotationModifier:
     blend: 1
     useClippedPercent: 0
@@ -267,7 +269,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3931729731548511134}
-        m_TargetAssemblyTypeName: TestDisconnectSpline, Assembly-CSharp
+        m_TargetAssemblyTypeName: SplineProjectileHandler, Assembly-CSharp
         m_MethodName: ReleaseFromSpline
         m_Mode: 1
         m_Arguments:
@@ -281,7 +283,7 @@ MonoBehaviour:
   _unityOnBeginningReached:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3520668639390767817
+--- !u!114 &3212438593773423014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pather
+  - Spline1
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - ground
   - SP_GridTileDetection_Layer
   - CommonUnits
-  - 
-  - 
+  - Projectile
+  - Aura
   - 
   - 
   - 

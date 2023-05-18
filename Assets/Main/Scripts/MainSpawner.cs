@@ -32,6 +32,8 @@ public class MainSpawner : MonoBehaviour
 
                 pos = GetRandomOkNode();
                 Instantiate(prefab1, pos, Quaternion.identity);
+                pos = GetRandomOkNode();
+                Instantiate(prefab2, pos, Quaternion.identity);
             }
         }
        

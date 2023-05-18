@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-
+using Lean.Pool;
 public class NC_Stater : MonoBehaviour, IGridUserSP
 {
     [SerializeField] bool _isFighting;
     public GameObject myGameObject  => this.gameObject;
-    [SerializeField] GameObject splineObj;
+    [SerializeField] GameObject projectile;
     [SerializeField] byte _myTeamNumber;
+    [SerializeField] Rigidbody projRigidbody;
+    [SerializeField] float projSpeed = 2;
     //[SerializeField] byte someByte;
     // test values for nodeCanvas to test out behaviorTrees
     // 4 states. 1 - idle, eval enemies. 2 - run, if near. 3 - fight, until target dead or die. 4 - dead.
@@ -120,6 +122,18 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 
     }
 
+    public void SpawnSplineCast()
+    {
+        var pos = transform.position + transform.forward+new Vector3(0,1,0);
+
+        var g= LeanPool.Spawn(projectile, pos, Quaternion.identity, null);
+      projRigidbody= g.GetComponent<Rigidbody>();
+
+        projRigidbody.AddForce(transform.forward* projSpeed+(Random.insideUnitSphere*0.2f), ForceMode.Impulse);
+
+        g.GetComponent<SplineProjectileHandler>().TeamNumber=MyTeamNumber;
+        
+    }
 
    
 }

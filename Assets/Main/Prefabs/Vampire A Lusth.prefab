@@ -767,7 +767,7 @@ Transform:
   - {fileID: 1671415802844789186}
   - {fileID: 5146995834352909426}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2868241687864629962
 MonoBehaviour:
@@ -907,7 +907,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &4038941147991596674
 CapsuleCollider:
@@ -989,8 +989,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFighting: 0
-  splineObj: {fileID: 0}
+  projectile: {fileID: 1969973708411199268, guid: 26aa8702e833ad847902e8c6b453653e,
+    type: 3}
   _myTeamNumber: 2
+  projRigidbody: {fileID: 0}
+  projSpeed: 25
   enemiesFrom_SP_GridTiles:
   - {fileID: 0}
   - {fileID: 0}

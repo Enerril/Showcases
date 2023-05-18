@@ -71,6 +71,7 @@ public class TriggerColliderSpacePartitionTile : MonoBehaviour
         }
 
     }
+    
 
     private void IncreaseCounter()
     {

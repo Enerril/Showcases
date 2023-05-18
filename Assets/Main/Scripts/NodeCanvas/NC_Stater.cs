@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using Lean.Pool;
+using NodeCanvas.BehaviourTrees;
+
 public class NC_Stater : MonoBehaviour, IGridUserSP
 {
     [SerializeField] bool _isFighting;
@@ -22,7 +24,7 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 
     IAstarAI aiPathf;
 
-
+    public bool targetValid;
     [SerializeField] bool _isIdle;
     [SerializeField] bool _isPaused;
     [SerializeField] bool _isRunning;
@@ -64,6 +66,7 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
     {
         // we search nearby territory using Space Partitioning... in the next version ??
 
+
         var nearbyEnemies = TriggerColliderSpacePartitionTile.GetAllNeighborUnits(CurrentTileID);
         //AllUnitsFromTiles = TriggerColliderSpacePartitionTile.GetAllNeighborUnits(CurrentTileID);
 
@@ -90,9 +93,11 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
                 {
                     temp = sqrLen;
                     Target = enemiesFrom_SP_GridTiles[i].gameObject;
-                    // we have target, exit idle go into running state (for now, distance check later)
-                    isIdle = false;
-                    isRunning = true;
+
+                  
+                        isIdle = false;
+                        isRunning = true;
+                   
 
 
                 }
@@ -100,14 +105,36 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
            
         }
 
-        if(_target!=null) return true; else return false;
+        if(Target != null) return true; else return false;
 
        // return false;
+    }
+
+    public bool CanReachTarget(GameObject target)
+    {
+        /*
+        public bool NewTarget(Transform _target) { Pathfinding.ABPath path = seeker.StartPath(this.GetFeetPosition(), _target.position) as Pathfinding.ABPath;
+            Debug.Log(path.endPoint + " - " + _target.position);
+            if (Vector3.Distance(path.endPoint, _target.position) > (this.endReachedDistance + this.marginTest)) { return false; } else { this.target = _target; return true; } }
+        */
+       // Pathfinding.ABPath path = AstarPath.StartPath(this.gameObject.transform.position,Target.transform.position) as Pathfinding.ABPath;
+       // var path = AstarPath.StartPath(this.GetFeetPosition(), _target.position)
+
+
+
+        return false;
     }
 
     public void RunningToTheTarget()
     {
         aiPathf.canMove = true;
+        // Debug.Log(Target);
+        if (Target == null)
+        { 
+            ResetTasks();
+            return;
+        }
+       
         aiPathf.destination = Target.transform.position;
 
         if (aiPathf.reachedDestination == true)
@@ -124,16 +151,62 @@ public class NC_Stater : MonoBehaviour, IGridUserSP
 
     public void SpawnSplineCast()
     {
-        var pos = transform.position + transform.forward+new Vector3(0,1,0);
+        if (Target != null)
+        {
+            var pos = transform.position + transform.forward + new Vector3(0, 1, 0);
 
-        var g= LeanPool.Spawn(projectile, pos, Quaternion.identity, null);
-      projRigidbody= g.GetComponent<Rigidbody>();
+            var g = LeanPool.Spawn(projectile, pos, Quaternion.identity, null);
+            projRigidbody = g.GetComponent<Rigidbody>();
 
-        projRigidbody.AddForce(transform.forward* projSpeed+(Random.insideUnitSphere*0.2f), ForceMode.Impulse);
+            projRigidbody.AddForce(transform.forward * projSpeed + (Random.insideUnitSphere * 0.2f), ForceMode.Impulse);
 
-        g.GetComponent<SplineProjectileHandler>().TeamNumber=MyTeamNumber;
+            g.GetComponent<ProjectileHandler>().TeamNumber = MyTeamNumber;
+        }
+
         
     }
 
-   
+    public bool isTargetValid()
+    {
+        if (Target==null || Target.activeInHierarchy == false)
+        {
+            ResetTasks();
+            //Debug.Log("here1");
+            return false;
+        }
+        if (Vector3.Distance(transform.position, Target.transform.position) > 10)
+        {
+            //Debug.Log("here2");
+            ResetTasks();
+            return false;
+        }
+
+       // Debug.Log("here3");
+        return true;
+    }
+
+    public void ResetTasks()
+    {
+        isFighting = false;
+        isRunning = false;
+        isPaused = false;
+        Target = null;
+        isIdle = true;
+    }
+
+    public void Die()
+    {
+        isPaused = true;
+        LeanPool.Despawn(this.gameObject);
+    }
+
+    private void OnEnable()
+    {
+        ResetTasks();
+    }
+
+    private void OnDestroy()
+    {
+        
+    }
 }

@@ -93,7 +93,7 @@ public class fireballSpawber : MonoBehaviour
 
 
             var p = LeanPool.Spawn(projectile);
-            p.GetComponent<SplineProjectileHandler>().TeamNumber = TeamNumber;
+            p.GetComponent<ProjectileHandler>().TeamNumber = TeamNumber;
             splineFollowerTemp = p.GetComponent<SplineFollower>();
             splineFollowerTemp.spline = splineComputer;
             splineFollowerTemp.RebuildImmediate();

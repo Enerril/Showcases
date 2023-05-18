@@ -4,7 +4,7 @@ using UnityEngine;
 using Dreamteck.Splines;
 using Lean.Pool;
 
-public class SplineProjectileHandler : MonoBehaviour
+public class ProjectileHandler : MonoBehaviour
 {
     //SplineFollower splineFollower;
     Rigidbody rb;
@@ -74,12 +74,17 @@ public class SplineProjectileHandler : MonoBehaviour
         // explosion and hit
         if (collision.gameObject.layer == 9)
         {
-            if (collision.gameObject.GetComponent<NC_Stater>().MyTeamNumber != TeamNumber)
+            var k = collision.gameObject.GetComponent<NC_Stater>();
+            if (k.MyTeamNumber != TeamNumber)
             {
                 //this.splineFollower.enabled = true;
                 //splineFollower.RebuildImmediate();
                 LeanPool.Spawn(explosion, transform.position, Quaternion.identity, null);
                 LeanPool.Despawn(this.gameObject);
+                //LeanPool.Despawn(collision.gameObject);
+                k.ResetTasks();
+                Destroy(k.gameObject);
+               
             }
         }
             
@@ -98,5 +103,6 @@ public class SplineProjectileHandler : MonoBehaviour
     {
         released = false;
     }
+
 
 }

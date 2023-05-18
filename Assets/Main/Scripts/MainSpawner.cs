@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using static UnityEditor.PlayerSettings;
-
+using Lean.Pool;
 public class MainSpawner : MonoBehaviour
 {
     AstarPath astar;
@@ -13,7 +13,7 @@ public class MainSpawner : MonoBehaviour
     GridGraph grid;
     [SerializeField] int spawmAmount=20;
     [SerializeField] bool isActive;
-
+    Vector3 pos = new Vector3();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class MainSpawner : MonoBehaviour
         if (isActive)
         {
             grid = AstarPath.active.data.gridGraph;
-            Vector3 pos = new Vector3();
+            
 
 
             for (int i = 0; i < spawmAmount; i++)
@@ -36,10 +36,27 @@ public class MainSpawner : MonoBehaviour
                 Instantiate(prefab2, pos, Quaternion.identity);
             }
         }
-       
 
+        StartCoroutine(SpawnUnits());
 
     }
+
+    IEnumerator SpawnUnits()
+    {
+        while (true&&isActive)
+        {
+            yield return new WaitForSeconds(15f);
+            for (int i = 0; i < spawmAmount; i++)
+            {
+
+                pos = GetRandomOkNode();
+                Instantiate(prefab1, pos, Quaternion.identity);
+                pos = GetRandomOkNode();
+                Instantiate(prefab2, pos, Quaternion.identity);
+            }
+        }
+    }
+
 
     private Vector3 GetRandomOkNode()
     {

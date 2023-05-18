@@ -76,7 +76,7 @@ Transform:
   - {fileID: 2180572549844532479}
   - {fileID: 8537378753373301675}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3988765632895618128
 MonoBehaviour:
@@ -261,6 +261,7 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Target":{"_propertyPath":"NC_Stater.Target","_name":"Target","_id":"fc5571be-e7d1-450e-ade2-1715f310018a","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"isFighting":{"_propertyPath":"NC_Stater.isFighting","_name":"isFighting","_id":"bfd34c6c-9f16-4973-884d-778c1d1b57bb","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"idleFloatWait":{"_name":"idleFloatWait","_id":"05715f43-1aaa-4126-973d-44cab4d96dd3","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"targetValid":{"_propertyPath":"NC_Stater.targetValid","_name":"targetValid","_id":"1031cc07-5c7d-48ef-8ba2-8c8ed0c4a5cd","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -285,6 +286,9 @@ MonoBehaviour:
   - _json: '{"_name":"idleFloatWait","_id":"05715f43-1aaa-4126-973d-44cab4d96dd3","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
+  - _json: '{"_propertyPath":"NC_Stater.targetValid","_name":"targetValid","_id":"1031cc07-5c7d-48ef-8ba2-8c8ed0c4a5cd","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
 --- !u!114 &5430080505459280434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +306,7 @@ MonoBehaviour:
     type: 3}
   _myTeamNumber: 1
   projRigidbody: {fileID: 0}
-  projSpeed: 25
+  projSpeed: 35
   enemiesFrom_SP_GridTiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -314,6 +318,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  targetValid: 0
   _isIdle: 1
   _isPaused: 0
   _isRunning: 0
